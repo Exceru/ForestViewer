@@ -1,15 +1,7 @@
 package wald;
 
-import wald.PixelPanel;
-
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.GridLayout;
-
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.*;
 
 
 public class Display implements Runnable {
@@ -46,7 +38,7 @@ public class Display implements Runnable {
 
                 switch(grid[row][column]) {
                     case 0:
-                        pixelPanel = new PixelPanel(Color.WHITE);
+                        pixelPanel = new PixelPanel(Color.GREEN);
                         break;
                     case 1:
                         pixelPanel = new PixelPanel(Color.BLACK);
@@ -67,7 +59,6 @@ public class Display implements Runnable {
 
         return panel;
     }
-
     public void setGrid(int[][] grid) {
         this.grid = grid;
     }
