@@ -1,6 +1,5 @@
 package forest;
 
-import vector.Vector;
 import vector.Vector2d;
 import vector.Vector2i;
 import vector.VectorMath;
@@ -12,10 +11,6 @@ import java.util.*;
  * Can be used to find the best spots for visibility.
  */
 public class ForesterInterface {
-    private final Forest forest;
-    private final ForestDisplay forestDisplay;
-    private final Vector2i foresterPosition;
-
 
     /**
      * Constructor for the ForesterInterface. Will perform all relevant actions.
@@ -23,21 +18,20 @@ public class ForesterInterface {
      * @param forestSize The size of the forest.
      */
     public ForesterInterface(Vector2i foresterPosition, Vector2i forestSize) {
-        this.forest = new Forest(forestSize);
-        this.foresterPosition = foresterPosition;
-        this.forestDisplay = new ForestDisplay(this.forest);
+        Forest forest = new Forest(forestSize);
+        ForestDisplay forestDisplay = new ForestDisplay(forest);
 
         /* Calculate the maximum visible trees from the foresters position:
         * - Outputs the number of visible trees to the console
         * - Shows a windows of the visibility matrix */
-        this.forest.setFeld(foresterPosition, new Field(Fieldtype.FORESTER));
-        showMaxVisibleTreesForPosition(foresterPosition, this.forest);
+        forest.setFeld(foresterPosition, new Field(Fieldtype.FORESTER));
+        showMaxVisibleTreesForPosition(foresterPosition, forest);
         forestDisplay.setTitle("Visible trees from " + foresterPosition);
         forestDisplay.run();
 
         /* Get the number of hidden trees and subtract that from the number of fields in the forest.
         Also subtract minus because of the forester. */
-        int numberOfVisibleTrees = getNumberVisibleTrees(this.forest);
+        int numberOfVisibleTrees = getNumberVisibleTrees(forest);
         System.out.println("The number of visible trees from the foresters point of " + foresterPosition + " is: "
                 + numberOfVisibleTrees + "\n");
 
@@ -48,7 +42,7 @@ public class ForesterInterface {
 
         for(Map.Entry<Vector2i, Integer> entry : spots) {
             /* See if the current entry has the same value as the best spot.*/
-            if(entry.getValue() == spots.get(0).getValue()) {
+            if(entry.getValue().intValue() == spots.get(0).getValue().intValue()) {
                 // Add to best-list if it is one of the best spots
                 topSpots.add(entry.getKey());
             }
@@ -60,11 +54,13 @@ public class ForesterInterface {
         System.out.println("A maximum of " + spots.get(0).getValue() + " trees can be seen at the best locations.");
         System.out.println("Only " + spots.get(spots.size() - 1).getValue() + " can be seen at the worst locations.\n");
 
-        System.out.println("The best spots are at: ");
+        System.out.println("The best spots are at:              (x,y) → (0,0) being top-left & (max, max) being bottom-right");
 
+        /* Visualize the top spots in a new window and color them differently. */
         Forest topForest = new Forest(forestSize);
         for(Vector2i location : topSpots) {
             topForest.setFeld(location, new Field(Fieldtype.MISCELLANEOUS));
+            /* Print out their locations as well. */
             System.out.println(location);
         }
 

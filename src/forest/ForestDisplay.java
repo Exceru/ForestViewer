@@ -11,6 +11,10 @@ import java.awt.*;
  */
 public class ForestDisplay implements Runnable {
 
+    /**
+     * The title can be changed by the {@link ForestDisplay#setTitle(String)}
+     * method before executing {@link ForestDisplay#run()}
+     */
     private String title;
     private Forest forest;
 
@@ -40,7 +44,7 @@ public class ForestDisplay implements Runnable {
     }
 
     /**
-     * Initializes the Graphical User Interface.
+     * Initializes the Graphical User Interface by creating the pixels, setting the window title and window behavior.
      */
     private void initGUI() {
         JFrame frame = new JFrame(title);
@@ -71,8 +75,7 @@ public class ForestDisplay implements Runnable {
         */
         for (int row = 0; row < y; row++) {
             for (int column = 0; column < x; column++) {
-                int pixelSize = 35;
-                pixelSize = 750 / x;
+                int pixelSize = 550 / x; /* Size of window divided by the amount of pixels equals pixel size. */
 
                 /* We will differentiate based on the FieldType enum inside the Field. */
                 ForestPixelPanel forestPixelPane = switch (forest.getFeld(new Vector2i(column, row)).getType()) {
@@ -89,6 +92,10 @@ public class ForestDisplay implements Runnable {
         return panel;
     }
 
+    /**
+     * Changes the title of the window. Must be set before executing {@link ForestDisplay#run()}.
+     * @param title The text to be displayed in the window bar.
+     */
     public void setTitle(String title) {
         this.title = title;
     }

@@ -79,8 +79,26 @@ public class VectorMath {
         return new Vector2d(v.getX(), v.getY());
     }
 
+    /**
+     * Will round a vector using {@link Math#round(float)}.
+     * @param v Vector to round.
+     * @return Rounded vector of type double.
+     */
     public static Vector2d round(Vector2d v){
         return new Vector2d(Math.round(v.getX()), Math.round(v.getY()));
+    }
+
+    /**
+     * Will generate a random vector between (inclusive) two vectors.
+     * @param min The minimum of the random vector.
+     * @param max The maximum of the random vector.
+     * @return Random vector between min and max.
+     */
+    public static Vector2i getRandomVector2i(Vector2i min, Vector2i max){
+        int randomX = (int) ((Math.random() * (max.getX() - min.getX())) + min.getX());
+        int randomY = (int) ((Math.random() * (max.getY() - min.getY())) + min.getY());
+
+        return new Vector2i(randomX,randomY);
     }
 
 }
