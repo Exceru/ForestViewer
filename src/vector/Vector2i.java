@@ -1,9 +1,9 @@
 package vector;
 
 /**
- * Class of the integer-version of the {@link Vector} class.
+ * Class of the integer-version of the {@link Vector2} class.
  */
-public class Vector2i extends Vector {
+public class Vector2i extends Vector2 {
     /**
      * Sets the x and y components given integer values.
      * @param x X component

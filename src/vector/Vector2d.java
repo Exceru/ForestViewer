@@ -1,9 +1,9 @@
 package vector;
 
 /**
- * Class of the double-version of the {@link Vector} class.
+ * Class of the double-version of the {@link Vector2} class.
  */
-public class Vector2d extends Vector {
+public class Vector2d extends Vector2 {
     /**
      * Sets the x and y components given double values.
      * @param x X component

@@ -9,7 +9,7 @@ public class VectorMath {
      * @param start starting value
      * @param end end value
      * @param t alpha, the amount to interpolate by
-     * @return value: start <= value <= end.
+     * @return value between or equal to start and end.
      */
     public static double lerp(double start, double end, double t) {
         return start + t * (end - start);

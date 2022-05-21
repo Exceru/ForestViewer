@@ -4,7 +4,7 @@ package vector;
  * Generic, abstract class on which a 2-dimensional vector can be based on.
  * @param <T> Generic type which must be a {@link Number}
  */
-abstract public class Vector<T extends Number> {
+abstract public class Vector2<T extends Number> {
     /**
      * X component of the vector.
      */
@@ -19,7 +19,7 @@ abstract public class Vector<T extends Number> {
      * @param x X component
      * @param y Y component
      */
-    public Vector(T x, T y) {
+    public Vector2(T x, T y) {
         this.x = x;
         this.y = y;
     }
